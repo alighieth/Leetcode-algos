@@ -1,34 +1,25 @@
-// not good
+function longestPalindrome(str: string): string {
+  function expand(l_pointer: number, r_pointer: number): string {
+    while (
+      l_pointer >= 0 &&
+      r_pointer < str.length &&
+      str.charAt(l_pointer) === str.charAt(r_pointer)
+    ) {
+      l_pointer--;
+      r_pointer++;
+    }
 
-const DP_MAP = new Map<string, string>();
-
-function longestPalindrome(s: string): string {
-  return helper(s, s);
-}
-
-function helper(str: string, palindrome: string): string {
-  if (DP_MAP.has(str)) {
-    console.log("found in cache ", str);
-    return DP_MAP.get(str) ?? "";
-  }
-  if (isPalindrome(str)) {
-    DP_MAP.set(str, str);
-    return str;
+    return String(str).substring(l_pointer + 1, r_pointer);
   }
 
-  const r_palindrome = helper(str.substring(0, str.length - 1), palindrome);
-  const l_palindrome = helper(str.substring(1, str.length), palindrome);
+  let result = "";
+  for (let index = 0; index < str.length; index++) {
+    const even_str = expand(index, index);
+    if (even_str.length > result.length) result = even_str;
 
-  const result =
-    r_palindrome.length > l_palindrome.length ? r_palindrome : l_palindrome;
-  DP_MAP.set(str, result);
+    const odd_str = expand(index, index + 1);
+    if (odd_str.length > result.length) result = odd_str;
+  }
+
   return result;
-}
-
-function isPalindrome(word: string): boolean {
-  if (!word) return false;
-
-  const reversed_str = word.split("").reduce((acc, cur) => cur + acc);
-
-  return reversed_str == word;
 }
