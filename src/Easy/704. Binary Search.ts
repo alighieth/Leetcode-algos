@@ -17,5 +17,3 @@ function search(nums: number[], target: number): number {
 
   return -1;
 }
-
-search([-1, 0, 3, 5, 9, 12], 9);
