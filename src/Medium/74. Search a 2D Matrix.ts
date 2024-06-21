@@ -13,11 +13,11 @@ function searchMatrix(matrix: number[][], target: number): boolean {
 
     if (elementMidArr < target) {
       if (median === matrix.length - 1) {
-        return search(elementArray, target);
+        return searchHelper(elementArray, target);
       }
       const rightMin = matrix[median + 1][0];
       if (rightMin > target) {
-        return search(elementArray, target);
+        return searchHelper(elementArray, target);
       } else {
         startPointer = median + 1;
       }
@@ -29,7 +29,7 @@ function searchMatrix(matrix: number[][], target: number): boolean {
   return false;
 }
 
-function search(nums: number[], target: number): boolean {
+function searchHelper(nums: number[], target: number): boolean {
   let endPointer: number = nums.length - 1;
   let startPointer: number = 0;
 
