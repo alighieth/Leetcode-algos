@@ -15,7 +15,7 @@ function findMedianSortedArrays(nums1: number[], nums2: number[]): number {
       left1Pointer++;
       toAdd = element1;
     } else {
-      toAdd = element2;
+      toAdd = element2 ?? 0;
       left2Pointer++;
     }
 
