@@ -3,26 +3,14 @@ class Solution {
   totalLength: number;
   constructor(w: number[]) {
     this.totalLength = w.reduce((acc, curr) => acc + curr);
-    this.numStack = new Array<number>();
 
     let startIndex = -1;
     w.forEach((element, index) => {
       startIndex = startIndex + element;
-      this.numStack[index] = startIndex;
+      w[index] = startIndex;
     });
 
-    console.log(this.numStack);
-  }
-
-  search(target: number): number {
-    for (let index = 0; index < this.numStack.length; index++) {
-      const element = this.numStack[index];
-      if (target <= element) {
-        return index;
-      }
-    }
-
-    return -1;
+    this.numStack = w;
   }
 
   binarySearch(target: number): number {
@@ -31,7 +19,6 @@ class Solution {
 
     while (left <= right) {
       const mid: number = Math.floor(left + (right - left) / 2);
-      console.log("mid", mid);
       if (target < this.numStack[mid]) {
         if (mid - 1 >= 0 && target > this.numStack[mid - 1]) return mid;
         if (mid === 0) return mid;
@@ -42,14 +29,12 @@ class Solution {
         left = mid + 1;
       }
     }
-    console.log("could not find anything ", target);
 
     return -1;
   }
 
   pickIndex(): number {
     const randomNumber = Math.floor(Math.random() * this.totalLength);
-    console.log(randomNumber);
     const itemSearch = this.binarySearch(randomNumber);
     return itemSearch;
   }
