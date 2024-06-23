@@ -7,22 +7,22 @@ const CLOSE_BRACKET = ")";
 const OPEN_BRACKET = "(";
 
 var minAddToMakeValid = function (s) {
-  const openBracketsStack = [];
-  const closeBracketsStack = [];
+  let openBrackets = 0;
+  let closeBrackets = 0;
 
   for (let index = 0; index < s.length; index++) {
     const element = s.charAt(index);
 
     if (element === OPEN_BRACKET) {
-      openBracketsStack.push(OPEN_BRACKET);
+      openBrackets++;
     } else if (element === CLOSE_BRACKET) {
-      if (openBracketsStack.length >= 1) {
-        openBracketsStack.pop();
+      if (openBrackets >= 1) {
+        openBrackets--;
       } else {
-        closeBracketsStack.push(CLOSE_BRACKET);
+        closeBrackets++;
       }
     }
   }
 
-  return openBracketsStack.length + closeBracketsStack.length;
+  return openBrackets.length + closeBrackets.length;
 };
