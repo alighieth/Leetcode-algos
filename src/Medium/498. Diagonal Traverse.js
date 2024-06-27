@@ -26,7 +26,6 @@ var findDiagonalOrder = function (mat) {
         y--;
       } else {
         x--;
-        y++;
       }
       goingUp = false;
     } else {
