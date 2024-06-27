@@ -21,6 +21,18 @@ var removeCoveredIntervals = function (intervals) {
     }
   }
 
-  console.log(coveredIndex);
-  return fullLength - coveredIndex.length;
+  console.log(coveredIndex.size);
+  return fullLength - coveredIndex.size;
+};
+
+// better solution O(nLogn)
+var removeCoveredIntervals = function (intervals) {
+  intervals.sort((a, b) => a[0] - b[0] || b[1] - a[1]);
+  let overlap = 0;
+
+  console.log(intervals);
+  for (i = 1, prev = 0; i < intervals.length; i++)
+    if (intervals[prev][1] >= intervals[i][1]) overlap++;
+    else prev = i;
+  return intervals.length - overlap;
 };
