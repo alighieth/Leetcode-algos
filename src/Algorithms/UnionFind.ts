@@ -1,4 +1,4 @@
-class UnionFind {
+class UnionFindAlgo {
   parent: number[];
   size: number[];
 
