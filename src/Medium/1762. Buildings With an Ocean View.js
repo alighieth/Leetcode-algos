@@ -11,9 +11,9 @@ var findBuildings = function (heights) {
   for (let index = heights.length - 1; index >= 0; index--) {
     const buildingHeight = heights[index];
 
-    if (buildingHeight > prefixMax) resArr.unshift(index);
+    if (buildingHeight > prefixMax) r;
     prefixMax = Math.max(prefixMax, buildingHeight);
   }
 
-  return resArr;
+  return resArr.filter((element) => element !== null);
 };
