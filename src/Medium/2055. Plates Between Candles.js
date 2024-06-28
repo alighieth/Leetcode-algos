@@ -39,22 +39,25 @@ var platesBetweenCandles = function (s, queries) {
   for (let index = 0; index < sSplit.length; index++) {
     const element = sSplit[index];
     if (element === "*") value++;
-
     platesCounter[index] = value;
   }
-
-  console.log(nearestRightPlate);
-  console.log(nearestLeftPlate);
-  console.log(platesCounter);
 
   const res = [];
   for (let index = 0; index < queries.length; index++) {
     const [start, end] = queries[index];
 
-    const nextPlate = nearestRightPlate[start];
-    const prevPlate = nearestLeftPlate[end];
+    const nextPlate = nearestLeftPlate[start];
+    const prevPlate = nearestRightPlate[end];
 
-    const total = platesCounter[prevPlate] - platesCounter[nextPlate];
+    if (nextPlate === -1 || prevPlate === -1) {
+      res.push(0);
+      continue;
+    }
+
+    const total = Math.max(
+      platesCounter[prevPlate] - platesCounter[nextPlate],
+      0
+    );
     res.push(total);
   }
 
