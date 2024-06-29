@@ -29,11 +29,9 @@ var calculate = function (s) {
         preOperator = element;
         num = "";
       } else {
-        // ( or )
-        if (element === "(") {
-          globalPointer++;
-          num = String(handleIsolation());
-        }
+        // ( only left sol
+        globalPointer++;
+        num = String(handleIsolation());
       }
 
       globalPointer++;
