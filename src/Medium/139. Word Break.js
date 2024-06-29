@@ -5,7 +5,7 @@
  */
 var wordBreak = function (s, wordDict) {
   if (wordDict.length == 0) return false;
-  const n = n;
+  const n = s.length;
 
   // create a set to have O(1) getting
   const wordSet = new Set();
@@ -20,7 +20,7 @@ var wordBreak = function (s, wordDict) {
     for (let from = 0; from < to; from++) {
       const word = s.substring(from, to);
 
-      if (wordSet.has(word) && dp[j] === true) {
+      if (wordSet.has(word) && dp[from] === true) {
         dp[to] = true;
         break;
       }
