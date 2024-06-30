@@ -26,5 +26,5 @@ var diameterOfBinaryTree = function (root) {
 
   helper(root, 0);
 
-  return Math.abs(maxCol - minCol);
+  return maxDiameter;
 };
