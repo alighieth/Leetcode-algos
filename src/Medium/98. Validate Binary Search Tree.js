@@ -11,21 +11,17 @@
  * @return {boolean}
  */
 var isValidBST = function (root) {
+  let output = true;
   function helper(node, max, min) {
-    if (node.val <= min || node.val >= max) return false;
-
-    let output = true;
-
-    if (node.left) {
-      output &= helper(node.left, node.val, min);
+    if (node.val <= min || node.val >= max) {
+      output = false;
+      return;
     }
 
-    if (node.right) {
-      output &= helper(node.right, max, node.val);
-    }
-
-    return output;
+    if (node.left) helper(node.left, node.val, min);
+    if (node.right) helper(node.right, max, node.val);
   }
 
-  return helper(root, Infinity, -Infinity);
+  helper(root, Infinity, -Infinity);
+  return output;
 };
