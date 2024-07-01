@@ -24,6 +24,7 @@ var pathSum = function (root, targetSum) {
     let res = [];
     if (node.val === targetSum) counter++;
     if (parent === null) return [];
+
     const mainSum = node.val + parent;
     res.push(mainSum);
 
