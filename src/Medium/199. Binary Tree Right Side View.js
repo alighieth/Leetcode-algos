@@ -16,24 +16,15 @@ var rightSideView = function (root) {
 
   const callStack = [];
   callStack.push(root);
-  res.push(root.val);
 
   while (callStack.length > 0) {
     const callStackLen = callStack.length;
     for (let index = 0; index < callStackLen; index++) {
       const element = callStack.shift();
-      console.log(element.val);
 
-      if (element.right !== null) {
-        callStack.push(element.right);
-      }
-
-      if (element.left !== null) {
-        callStack.push(element.left);
-      }
-    }
-    if (callStack.length > 0) {
-      res.push(callStack[0].val);
+      if (index === 0) res.push(element.val);
+      if (element.right !== null) callStack.push(element.right);
+      if (element.left !== null) callStack.push(element.left);
     }
   }
 
